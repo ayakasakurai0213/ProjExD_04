@@ -65,7 +65,7 @@ class Bird(pg.sprite.Sprite):
             (-1, +1): pg.transform.rotozoom(img0, 45, 1.0),  # 左下
             (0, +1): pg.transform.rotozoom(img, -90, 1.0),  # 下
             (+1, +1): pg.transform.rotozoom(img, -45, 1.0),  # 右下
-        }
+        } 
         self.dire = (+1, 0)
         self.image = self.imgs[self.dire]
         self.rect = self.image.get_rect()
