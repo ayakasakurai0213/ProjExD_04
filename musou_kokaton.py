@@ -288,7 +288,7 @@ def main():
 
             if event.type == pg.KEYDOWN and event.key == pg.K_SPACE:
                 beams.add(Beam(bird))   # BeamオブジェクトをGroupオブジェクトに追加
-            if event.type == pg.KEYDOWN and event.key == pg.K_LSHIFT:
+            if event.type == pg.KEYDOWN and event.key == pg.K_RSHIFT:
                 if score.score > 100:
                     bird.change_state("hyper", 500)
                     score.score -= 100
