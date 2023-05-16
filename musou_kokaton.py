@@ -72,6 +72,7 @@ class Bird(pg.sprite.Sprite):
         self.rect.center = xy
         self.speed = 10
         self.change=False
+        self.states="nomal"
 
     def change_img(self, num: int, screen: pg.Surface):
         """
@@ -269,7 +270,6 @@ def main():
     screen = pg.display.set_mode((WIDTH, HEIGHT))
     bg_img = pg.image.load("ex04/fig/pg_bg.jpg")
     score = Score()
-    state="nomal"
 
     bird = Bird(3, (900, 400))
     bombs = pg.sprite.Group()
