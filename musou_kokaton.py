@@ -65,7 +65,7 @@ class Bird(pg.sprite.Sprite):
             (-1, +1): pg.transform.rotozoom(img0, 45, 1.0),  # 左下
             (0, +1): pg.transform.rotozoom(img, -90, 1.0),  # 下
             (+1, +1): pg.transform.rotozoom(img, -45, 1.0),  # 右下
-        }
+        } 
         self.dire = (+1, 0)
         self.image = self.imgs[self.dire]
         self.rect = self.image.get_rect()
@@ -297,19 +297,18 @@ def main():
     bird = Bird(3, (900, 400))
     bombs = pg.sprite.Group()
     beams = pg.sprite.Group()
-C0A22066/feature2
+
     exps = pg.sprite.Group() # 爆発エフェクトのグループ
     emys = pg.sprite.Group() # 敵機のグループ
     shields = pg.sprite.Group()
 
     exps = pg.sprite.Group()
     emys = pg.sprite.Group()
- C0119292/feature3
+
     
 
     gravity = pg.sprite.Group()
-main
- main
+
 
     tmr = 0
     clock = pg.time.Clock()
@@ -320,24 +319,27 @@ main
                 return 0
             if event.type == pg.KEYDOWN and event.key == pg.K_SPACE:
                 beams.add(Beam(bird))
- C0119292/feature3
+
             if event.type ==pg.KEYDOWN and event.key == pg.K_RSHIFT:
                 if score.score>100:
                     bird.change_state("hyper",500)
                     score.score -= 100
 
- C0A22066/feature2
+
+
+
             if event.type == pg.KEYDOWN and event.key == pg.K_LSHIFT:
                 bird.speed = 20
             if event.type == pg.KEYUP and event.key == pg.K_LSHIFT:
                 bird.speed = 10
+
             
+
 
             if event.type == pg.KEYDOWN and event.key == pg.K_TAB and score.score >= 0:  #and スコア>=50
                 gravity.add(Gravity(bird, 200, 500)) 
                 score.score_up(-50)
- main
- main
+
         screen.blit(bg_img, [0, 0])
 
         if tmr%200 == 0:  # 200フレームに1回，敵機を出現させる
@@ -357,7 +359,7 @@ main
             exps.add(Explosion(bomb, 50))  # 爆発エフェクト
             score.score_up(1)  # 1点アップ
 
- C0119292/feature3
+
         for bomb in pg.sprite.spritecollide(bird, bombs, True):
             if bird.states=="hyper":
                 exps.add(Explosion(bomb, 50))  # 爆発エフェクト
@@ -389,7 +391,7 @@ main
         gravity.update(bird)
         gravity.draw(screen)
         bird.update(key_lst, screen)
- main
+
         beams.update()
         beams.draw(screen)
         emys.update()
