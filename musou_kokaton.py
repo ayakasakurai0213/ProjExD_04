@@ -182,7 +182,8 @@ class NeoBeam(pg.sprite.Sprite):
         self.bird = bird
         self.list1 = list()
 
-    def gen_beams(self): #ここから
+    def gen_beams(self):
+        
 
         for angle in range(-50, +51, 100//(self.num-1)): #/だったらflote //だったらintになる
             self.list1.append(Beam(self.bird, angle0 = angle))
