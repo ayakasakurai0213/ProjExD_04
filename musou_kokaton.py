@@ -156,16 +156,17 @@ class Bomb(pg.sprite.Sprite):
 
 class Beam(pg.sprite.Sprite):
     """
-    ビームに関するクラス
+    一つビームに関するクラス
     """
-    def __init__(self, bird: Bird):
+    def __init__(self, bird: Bird, angle0: int = 0):
+
         """
         ビーム画像Surfaceを生成する
         引数 bird：ビームを放つこうかとん
         """
         super().__init__()
-        self.vx, self.vy = bird.get_direction()
-        angle = math.degrees(math.atan2(-self.vy, self.vx))
+        self.vx, self.vy = bird.get_direction() #どっち向いているか
+        angle = math.degrees(math.atan2(-self.vy, self.vx)) + angle0 #向いている角度
         self.image = pg.transform.rotozoom(pg.image.load(f"ex04/fig/beam.png"), angle, 2.0)
         self.vx = math.cos(math.radians(angle))
         self.vy = -math.sin(math.radians(angle))
@@ -183,6 +184,24 @@ class Beam(pg.sprite.Sprite):
         if check_bound(self.rect) != (True, True):
             self.kill()
 
+class NeoBeam(pg.sprite.Sprite):
+    """
+    複数のビーム
+    """
+
+    def __init__(self, bird: Bird, num: int):
+
+        self.num = num
+        self.bird = bird
+        self.list1 = list()
+
+    def gen_beams(self):#ここ
+
+
+        for angle in range(-50, +51, 100//(self.num-1)): #/だったらflote //だったらintになる
+            self.list1.append(Beam(self.bird, angle0 = angle))
+
+        return self.list1
 
 class Explosion(pg.sprite.Sprite):
     """
@@ -318,6 +337,12 @@ def main():
             if event.type == pg.QUIT:
                 return 0
             if event.type == pg.KEYDOWN and event.key == pg.K_SPACE:
+
+                beams.add(Beam(bird)) #向き+45
+
+            if event.type == pg.KEYDOWN and event.key == pg.K_SPACE and key_lst[pg.K_LSHIFT]:
+                beams.add(NeoBeam(bird, 5).gen_beams())
+
                 beams.add(Beam(bird))
 
             if event.type ==pg.KEYDOWN and event.key == pg.K_RSHIFT:
@@ -339,6 +364,7 @@ def main():
             if event.type == pg.KEYDOWN and event.key == pg.K_TAB and score.score >= 0:  #and スコア>=50
                 gravity.add(Gravity(bird, 200, 500)) 
                 score.score_up(-50)
+
 
         screen.blit(bg_img, [0, 0])
 
