@@ -238,8 +238,8 @@ class Gravity(pg.sprite.Sprite):
         self.size = size
         self.life = life
         self.image = pg.Surface((self.size*2, self.size*2))
-        pg.draw.circle(self.image, (0, 0, 0), (self.size, self.size), self.size)
-        self.image.set_colorkey((1, 0, 0))
+        pg.draw.circle(self.image, (1, 0, 0), (self.size, self.size), self.size)
+        self.image.set_colorkey((0, 0, 0))
         self.rect = self.image.get_rect()
         self.rect.center = bird.rect.center
 
