@@ -83,7 +83,7 @@ class Bird(pg.sprite.Sprite):
         self.image = pg.transform.rotozoom(pg.image.load(f"ex04/fig/{num}.png"), 0, 2.0)
         screen.blit(self.image, self.rect)
 
-    def update(self, key_lst: list[bool], screen: pg.Surface,score):
+    def update(self, key_lst: list[bool], screen: pg.Surface):
         """
         押下キーに応じてこうかとんを移動させる
         引数1 key_lst：押下キーの真理値リスト
@@ -397,7 +397,7 @@ def main():
                 time.sleep(2)
                 return
 
-        bird.update(key_lst, screen,score)
+        bird.update(key_lst, screen)
 
         for bomb in pg.sprite.groupcollide(bombs, gravity, True, False).keys():  #因数3(4):因数1(2)を殺す？
             exps.add(Explosion(bomb, 50))  # 爆発エフェクト
